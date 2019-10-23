@@ -1,0 +1,17 @@
+{
+  "name": "react-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^16.9.9",
+    "react": "^16.10.2",
+    "redux": "^4.0.4"
+  }
+}
