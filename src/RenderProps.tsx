@@ -1,9 +1,19 @@
 import React from 'react'
 
+// Default component
+interface CustomLabelProps {
+  className: string
+}
+const Label: React.FC<CustomLabelProps> = ({ children, ...otherProps }) => <span {...otherProps}>{children}</span>
+// End of default component
+
 interface Props {
   // Переопределяем children
   // Другие renderProps-пропсы типизируются так же
-  children: (count: number) => React.ReactNode
+  children: (
+    count: number,
+    DefaultLabel: typeof Label // или React.ComponentType<CustomLabelProps>
+  ) => React.ReactNode
 }
 
 interface State {
@@ -32,7 +42,7 @@ class TestCounter extends React.Component<Props, State> {
         <button onClick={this.onDecrement}>
           -
         </button>
-        {this.props.children(this.state.count)}
+        {this.props.children(this.state.count, Label)}
       </div>
     );
   }
@@ -47,8 +57,12 @@ const Example = () => {
         }}
       </TestCounter>
       <TestCounter>
-        {count => {
-          return <h1>Now count is {count}</h1>
+        {(count, DefaultLabel) => {
+          return (
+            <DefaultLabel className="conditional-class">
+              Now count is {count}
+            </DefaultLabel>
+          )
         }}
       </TestCounter>
     </React.Fragment>
